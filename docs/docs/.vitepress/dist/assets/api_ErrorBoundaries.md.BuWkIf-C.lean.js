@@ -1,0 +1,1 @@
+import{_ as r,c as e,o as a}from"./chunks/framework.Dh1jimFm.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"api/ErrorBoundaries.md","filePath":"api/ErrorBoundaries.md"}'),o={name:"api/ErrorBoundaries.md"};function t(s,n,i,c,d,p){return a(),e("div")}const f=r(o,[["render",t]]);export{m as __pageData,f as default};

@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as n}from"./chunks/framework.Dh1jimFm.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"components/AppBtn.md","filePath":"components/AppBtn.md"}'),o={name:"components/AppBtn.md"};function p(a,s,c,r,m,_){return n(),e("div")}const f=t(o,[["render",p]]);export{i as __pageData,f as default};

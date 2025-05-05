@@ -1,0 +1,1 @@
+import{_ as e,c as t,o}from"./chunks/framework.Dh1jimFm.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"components/AppDialog.md","filePath":"components/AppDialog.md"}'),a={name:"components/AppDialog.md"};function p(n,s,c,r,i,m){return o(),t("div")}const d=e(a,[["render",p]]);export{_ as __pageData,d as default};

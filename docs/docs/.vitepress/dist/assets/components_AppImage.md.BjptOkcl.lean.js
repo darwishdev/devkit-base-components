@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.Dh1jimFm.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"components/AppImage.md","filePath":"components/AppImage.md"}'),o={name:"components/AppImage.md"};function p(n,s,c,r,m,_){return a(),t("div")}const f=e(o,[["render",p]]);export{i as __pageData,f as default};

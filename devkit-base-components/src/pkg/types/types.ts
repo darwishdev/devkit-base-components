@@ -1,22 +1,15 @@
 
 
-import type { VNode } from 'vue'
+import type { Ref, VNode } from 'vue'
 import type { MenuItem } from 'primevue/menuitem'
 import type { IconFindRequest, IconFindResponse } from './api_types'
-
-export type EndpointFunction<
-	TReq extends Record<string, unknown> = {},
-	TResp extends Record<string, unknown> = {}
-> = ((req: TReq) => Promise<TResp>)
-
-export type ApiEndpoint<
-	TApi extends Record<string, Function>,
-	TReq extends Record<string, unknown> = {},
-	TResp extends Record<string, unknown> = {}
-> = keyof TApi | EndpointFunction<TReq, TResp> | Promise<TResp>
+import { ApiEndpoint } from 'devkit-apiclient'
+import { DialogProps, DrawerProps, MenubarRouterBindProps } from 'primevue'
 
 export type DevkitBaseConfig<TApi extends Record<string, Function>> = {
 	apiClient: TApi
+	baseImageUrl?: string
+	noImageUrl?: string
 	locales: string[]
 	iconFindApi?: ApiEndpoint<TApi, IconFindRequest, IconFindResponse>
 }
@@ -36,11 +29,38 @@ export type AppIconProps = {
 	color?: string
 }
 export type AppBtnProps = {
-	action: string | Function,
+	action?: string | Function,
+	route?: string
 	label?: string,
-	label_ar?: string,
+	labelAr?: string,
+	style?: any;
+	class?: any;
+	icon?: string | undefined;
+	iconPos?: 'left' | 'right' | 'top' | 'bottom' | undefined;
+	iconClass?: string | object | undefined;
+	badge?: string | undefined;
+	badgeClass?: string | object | undefined;
+	badgeSeverity?: 'secondary' | 'info' | 'success' | 'warn' | 'danger' | 'contrast' | null | undefined;
+	loading?: boolean | undefined;
+	loadingIcon?: string | undefined;
+	as?: string | object | undefined;
+	asChild?: boolean | undefined;
+	link?: boolean | undefined;
+	severity?: 'secondary' | 'success' | 'info' | 'warn' | 'help' | 'danger' | 'contrast' | undefined;
+	raised?: boolean | undefined;
+	rounded?: boolean | undefined;
+	text?: boolean | undefined;
+	outlined?: boolean | undefined;
+	size?: 'small' | 'large' | undefined;
+	plain?: boolean | undefined;
+	fluid?: boolean | undefined;
+	dt?: any;
+	pt?: any;
+	key?: string;
+	ptOptions?: any;
+	unstyled?: boolean;
 	variant?: "outlined" | "text" | "link"
-}
+} & Partial<AppIconProps>;
 
 export type AppBtnSlots = {
 	default(): VNode;
@@ -55,6 +75,33 @@ export type AppImageEmits = {
 	(e: 'placeholder-loaded', event: Event): void
 	(e: 'fallback-error', error: Event): void
 }
+export type AppMenuProps = {
+	items: MenuItem & { labelAr?: string }[]
+	isVertical?: boolean
+	isCollabsable?: boolean
+	useDrawerOnMobile?: boolean
+	drawerProps?: DrawerProps
+	breakpoint?: number
+	logo?: string | {
+		src: string, type?: 'image' | 'icon',
+		size?: 'small' | 'medium' | 'large'
+	}
+}
+export type MenuItemScope = {
+	item: MenuItem;
+	label: string | ((...args: any) => string) | undefined;
+	props: MenubarRouterBindProps;
+	root: boolean;
+	hasSubmenu: boolean;
+
+}
+export type AppMenuSlots = {
+	logo(): VNode;
+	item(scope: MenuItemScope): VNode;
+	end(): VNode;
+	mobileToggler(scope: { toggle: Function }): VNode;
+	collabseToggler(scope: { toggle: Function }): VNode
+}
 export type AppHeaderProps = {
 	items: MenuItem & { labelAr?: string }[]
 	hideLocalSwitch?: boolean
@@ -62,4 +109,14 @@ export type AppHeaderProps = {
 		src: string, type?: 'image' | 'icon',
 		size?: 'small' | 'medium' | 'large'
 	}
+}
+export type AppDialogProps = DialogProps & {
+	errorRef?: Ref<string>
+}
+export type AppDialogSlots = {
+	default(): VNode;
+	error(): VNode;
+	actions(props: { confirm: () => void, close: (e?: any) => void }): VNode;
+	confirm(props: { confirm: () => void }): VNode;
+	cancel(props: { close: (e?: any) => void }): VNode;
 }

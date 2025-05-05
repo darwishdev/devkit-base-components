@@ -11,10 +11,14 @@ const router = createRouter({
     {
       path: '/',
       component: HomeView,
+
     },
     {
       path: '/icon',
-      component: BaseAppIcon,
+      component: HomeView,
+      meta: {
+        breadcrumbs: [{ label: "icon", to: { name: 'icon' } }],
+      }
     },
     {
       path: '/button',

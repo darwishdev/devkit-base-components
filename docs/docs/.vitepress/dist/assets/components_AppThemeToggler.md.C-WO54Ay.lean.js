@@ -1,0 +1,1 @@
+import{_ as e,c as t,o}from"./chunks/framework.Dh1jimFm.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"components/AppThemeToggler.md","filePath":"components/AppThemeToggler.md"}'),p={name:"components/AppThemeToggler.md"};function r(n,a,s,c,m,l){return o(),t("div")}const i=e(p,[["render",r]]);export{d as __pageData,i as default};

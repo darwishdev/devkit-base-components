@@ -10,6 +10,7 @@ import 'devkit-base-components/style';
 
 const app = createApp(App)
 
+apiClient.iconFind
 const i18n = createI18n({
   locale: 'en',
   fallbackLocale: 'en',

@@ -1,33 +1,69 @@
 <script setup lang="ts">
-import { h, useAttrs } from 'vue';
-import type { AppBtnProps, AppBtnSlots, AppIconProps } from '@/pkg/types/types';
-import { Button } from 'primevue';
-import { RouterLink } from 'vue-router';
-import AppIcon from './AppIcon.vue';
+import { h, useAttrs } from "vue";
+import type { AppBtnProps, AppBtnSlots } from "@/pkg/types/types";
+import { Button } from "primevue";
+import { RouterLink } from "vue-router";
+import AppIcon from "./AppIcon.vue";
+import { useI18n } from "vue-i18n";
 const slots = defineSlots<AppBtnSlots>();
-const { action, label, icon, useReset, size, color, iconType, variant = 'outlined' } = defineProps<AppBtnProps & Partial<AppIconProps>>();
-const attrs = useAttrs()
+const props = defineProps<AppBtnProps>();
+const { locale } = useI18n();
+const {
+  action,
+  label,
+  labelAr,
+  route,
+  icon,
+  useReset = true,
+  size,
+  color,
+  iconType,
+} = props;
+const attrs = useAttrs();
 const renderAppBtn = () => {
   const baseProps = {
-    class: `app-btn`,
-    variant,
-    ...attrs
+    ...props,
+    ...attrs,
+    class: "flex",
+  };
+  const children = slots.default
+    ? slots.default()
+    : [
+        h(
+          "div",
+          {
+            class: "flex items-center gap-2 start",
+          },
+          [
+            slots.icon
+              ? slots.icon()
+              : !icon
+                ? undefined
+                : h(AppIcon, { icon, size, color, useReset, iconType }),
+            slots.label
+              ? slots.label()
+              : h("span", locale.value == "ar" ? labelAr : label),
+          ],
+        ),
+        slots.end ? slots.end() : undefined,
+      ];
+  const childrenWrapper = h("div", { class: "flex justify-between" }, children);
+
+  if (route) {
+    return h(RouterLink, { ...attrs, to: route }, childrenWrapper);
   }
-  const children = slots.default ? slots.default() : [
-    slots.icon ? slots.icon() : !icon ? undefined : h(AppIcon, { icon, size, color, useReset, iconType }),
-    slots.label ? slots.label() : h('span', label),
-    slots.end ? slots.end() : undefined,
-  ]
+  if (typeof action == "undefined") {
+    return h(Button, { ...baseProps }, children);
+  }
   if (typeof action == "function") {
-    return h(Button, { ...baseProps, onClick: (e) => action(e) }, children)
+    return h(Button, { ...baseProps, onClick: (e) => action(e) }, children);
   }
-  const childrenWrapper = h('div', { class: "flex items-center gap-2" }, children)
   if (action.startsWith("http")) {
-    return h('a', { ...baseProps, href: action }, childrenWrapper)
+    return h("a", { href: action }, childrenWrapper);
   }
-  return h(RouterLink, { ...baseProps, to: action }, childrenWrapper)
-}
+  return h(RouterLink, { ...attrs, to: action }, childrenWrapper);
+};
 </script>
 <template>
-  <component :is="renderAppBtn" />
+  <component class="flex" :is="renderAppBtn" />
 </template>

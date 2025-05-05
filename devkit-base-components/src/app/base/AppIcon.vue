@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed, h, inject, ref } from 'vue';
 import { iconHelper } from '@/devkit_base_components';
-import type { ApiEndpoint, AppIconProps, AppIconSlots } from '@/pkg/types/types';
-import { resolveApiEndpoint } from '@/pkg/utils/TypeUtils';
+import type { AppIconProps, AppIconSlots } from '@/pkg/types/types';
+
+import { ApiEndpoint, resolveApiEndpoint } from 'devkit-apiclient'
 import type { IconFindRequest, IconFindResponse } from '@/pkg/types/api_types';
-const { icon, size, iconType, color, useReset } = defineProps<AppIconProps>();
+const { icon, size, iconType, color, useReset = true } = defineProps<AppIconProps>();
 const apiClient = inject('apiClient')
 const iconFindApi = inject<ApiEndpoint<any, IconFindRequest, IconFindResponse>>('iconFindApi')
 const { top: topSlot, bottom: bottomSlot } = defineSlots<AppIconSlots>();
@@ -47,7 +48,6 @@ const modifySvgAttributes = computed(() => {
 })
 const svgIconContent = ref('🆖')
 const getIconFromApi = () => {
-  console.log("getting from db")
   if (!iconFindApi) {
     return
   }
@@ -80,7 +80,6 @@ const renderInnerIcon = () => {
         color: color || 'currentColor'
       }
     })
-
   }
   getIconFromDb()
   return h('span', {

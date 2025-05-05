@@ -27,7 +27,16 @@ export default defineConfig({
 			formats: ['es'], // Only output ESM format
 		},
 		rollupOptions: {
-			external: ['vue', 'vue-router', 'primevue'], // Externalize Vue
+			external: [
+				'vue',
+				"devkit-apiclient",
+				'dexie',
+				'tailwindcss',
+				'tailwindcss-primeui',
+				'vue-i18n',
+				'vue-router'
+			],
+			// Externalize Vue
 			output: {
 				globals: {
 					vue: 'Vue',

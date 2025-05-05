@@ -95,3 +95,11 @@ export type IconFindRequest = {
 export type IconFindResponse = {
 	icon: Icon;
 }
+export type NavigationBarItem = {
+	key: string;
+	label: string;
+	labelAr: string;
+	icon: string;
+	route: string;
+	items: NavigationBarItem[];
+}

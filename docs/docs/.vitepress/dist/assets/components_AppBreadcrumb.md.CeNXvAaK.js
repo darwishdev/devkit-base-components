@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as r}from"./chunks/framework.Dh1jimFm.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"components/AppBreadcrumb.md","filePath":"components/AppBreadcrumb.md"}'),a={name:"components/AppBreadcrumb.md"};function o(c,p,n,s,m,d){return r(),t("div")}const f=e(a,[["render",o]]);export{i as __pageData,f as default};
