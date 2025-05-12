@@ -16,6 +16,7 @@
     "@connectrpc/connect-web": "^2.0.0",
     "@storybook/jest": "^0.2.3",
     "@storybook/testing-library": "^0.2.2",
+    "devkit-admin": "file:.yalc/devkit-admin",
     "dexie": "^4.0.10",
     "primevue": "^4.2.5",
     "tailwindcss-primeui": "^0.4.0",
